@@ -107,15 +107,25 @@ let mouseButtonPressed = (event, index) => {
  * @param {number} num the number of milliseconds to convert to seconds
  * @return {number} second for the displayed time (0 to 60)
  */
+let convertToLarger = (num, i) => Math.trunc(num/i);
+let msToTotalSeconds = milliseconds => convertToLarger(milliseconds,1000)
+let msToTotalMinutes = milliseconds => convertToLarger(msToTotalSeconds(milliseconds),60)
+let msToTotalHours = milliseconds => convertToLarger(msToTotalMinutes(milliseconds),60)
+let remainingAfterConvert = (num, i) => Math.trunc(num%i) 
 
-let getSecondFromMs   = num => 0;
+let remainingAfterConvert = (num, i) => Math.trunc(num%i)
+let getSecondFromMs   =  milliseconds => remainingAfterConvert(msToTotalSeconds(milliseconds),60);
+let getMinuteFromMs   = milliseconds => remainingAfterConvert(msToTotalMinutes(milliseconds),60);
+let getHourFromMs     = milliseconds => remainingAfterConvert(msToTotalHours(milliseconds),24);
 
-let getMinuteFromMs   = num => 0;
-let getHourFromMs     = num => 0;
+let convertToSmaller = (num, i) => (num*i)
+let daysToTotalHours = days => convertToSmaller(days,24)
+let daysToTotalMinutes = days => convertToSmaller(daysToTotalHours(days), 60)
+let daysToTotalSeconds = days => convertToSmaller(daysToTotalMinutes(days), 60)
 
-let getSecondFromDays = num => 0;
-let getMinuteFromDays = num => 0;
-let getHourFromDays   = num => 0;
+let getSecondFromDays = days => remainingAfterConvert(daysToTotalSeconds(days),60);
+let getMinuteFromDays = days => remainingAfterConvert(daysToTotalMinutes(days),60);
+let getHourFromDays   = days => remainingAfterConvert(daysToTotalHours(days),24);
 
 /* END REPLACEMENT FOR ASSIGNMENT 2 */
 
