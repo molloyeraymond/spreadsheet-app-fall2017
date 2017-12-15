@@ -102,29 +102,102 @@ let mouseButtonPressed = (event, index) => {
  * @todo BE SURE TO DOCUMENT EACH FUNCTION IN JSDOC FORMAT (USE BELOW AS REFERENCE AND SEE: http://usejsdoc.org/)
  */
 
+
+/**
+ * Given a number and an integer, returns the total number of whole units in the number with that conversion factor
+ * @param {number} num the number 
+ * @param {number} the integer
+ * @return {number} the quotient of the two numbers
+ */
+
+let convertToLarger = (num, i) => Math.trunc(num/i);
+
+/**
+ * Given a number and an integer, returns the total number of whole remaining smaller units after the number with that coversion factor has been removed
+ * @param {number} num the number 
+ * @param {number} the integer
+ * @return {number} the remainder of the division
+ */
+
+let remainingAfterConvert = (num, i) => Math.trunc(num%i)
+
 /**
  * Given a number of milliseconds from midnight, returns the second (0 to 60) for the displayed time
  * @param {number} num the number of milliseconds to convert to seconds
  * @return {number} second for the displayed time (0 to 60)
  */
-let convertToLarger = (num, i) => Math.trunc(num/i);
-let msToTotalSeconds = milliseconds => convertToLarger(milliseconds,1000)
-let msToTotalMinutes = milliseconds => convertToLarger(msToTotalSeconds(milliseconds),60)
-let msToTotalHours = milliseconds => convertToLarger(msToTotalMinutes(milliseconds),60)
-let remainingAfterConvert = (num, i) => Math.trunc(num%i) 
 
-let remainingAfterConvert = (num, i) => Math.trunc(num%i)
 let getSecondFromMs   =  milliseconds => remainingAfterConvert(msToTotalSeconds(milliseconds),60);
+
+/**
+ * Given a number of milliseconds from midnight, returns the minute (0 to 60) for the displayed time
+ * @param {number} num the number of milliseconds to convert to minutes
+ * @return {number} second for the displayed time (0 to 60)
+ */
+
 let getMinuteFromMs   = milliseconds => remainingAfterConvert(msToTotalMinutes(milliseconds),60);
+
+/**
+ * Given a number of milliseconds from midnight, returns the hour (0 to 24) for the displayed time
+ * @param {number} num the number of milliseconds to convert to hours
+ * @return {number} second for the displayed time (0 to 24)
+ */
+
 let getHourFromMs     = milliseconds => remainingAfterConvert(msToTotalHours(milliseconds),24);
 
+/**
+ * Given a number and an integer, returns the total number of fractional units in the number with that conversation factor
+ * @param {number} num 
+ * @param [number] integer 
+ * @return {number} fractional units of number and integer
+ */
+
 let convertToSmaller = (num, i) => (num*i)
+
+/**
+ * Given a number of days, returns the hours for the displayed time
+ * @param {number} num the number of days to convert to hours
+ * @return {number} hours for the displayed time
+ */
+
 let daysToTotalHours = days => convertToSmaller(days,24)
+
+/**
+ * Given a number of days, returns the miuntes for the displayed time
+ * @param {number} num the number of days to convert to minutes
+ * @return {number} minutes for the displayed time 
+ */
+
 let daysToTotalMinutes = days => convertToSmaller(daysToTotalHours(days), 60)
+
+/**
+ * Given a number of days, returns the second for the displayed time
+ * @param {number} num the number of days to convert to seconds
+ * @return {number} secons for the displayed time
+ */
+
 let daysToTotalSeconds = days => convertToSmaller(daysToTotalMinutes(days), 60)
 
+/**
+ * Given a number of days in decimal form from midnight, returns the second (0 to 60) for the displayed time
+ * @param {number} num the number of days to convert to seconds
+ * @return {number} seconds for the displayed time (0 to 60)
+ */
 let getSecondFromDays = days => remainingAfterConvert(daysToTotalSeconds(days),60);
+
+/**
+ * Given a number of days in decimal form from midnight, returns the minute (0 to 60) for the displayed time
+ * @param {number} num the number of days to convert to minutes
+ * @return {number} minutes for the displayed time (0 to 60)
+ */
 let getMinuteFromDays = days => remainingAfterConvert(daysToTotalMinutes(days),60);
+
+/**
+ * Given a number of milliseconds from midnight, returns the hour (0 to 24) for the displayed time
+ * @param {number} num the number of days to convert to hours
+ * @return {number} hours for the displayed time (0 to 24)
+ */
+
 let getHourFromDays   = days => remainingAfterConvert(daysToTotalHours(days),24);
 
 /* END REPLACEMENT FOR ASSIGNMENT 2 */
