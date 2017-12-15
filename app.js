@@ -113,6 +113,30 @@ let mouseButtonPressed = (event, index) => {
 let convertToLarger = (num, i) => Math.trunc(num/i);
 
 /**
+ * Given a number of milliseconds, returns the number of seconds
+ * @param {number} num the number 
+ * @return {number} the number of seconds coverted from milliseconds
+ */
+
+let msToTotalSeconds = milliseconds => convertToLarger(milliseconds,1000)
+
+/**
+ * Given a number of milliseconds, returns the number of minutes
+ * @param {number} num the number 
+ * @return {number} the number of minutes coverted from milliseconds
+ */
+
+let msToTotalMinutes = milliseconds => convertToLarger(msToTotalSeconds(milliseconds),60)
+
+/**
+ * Given a number of milliseconds, returns the number of hours
+ * @param {number} num the number 
+ * @return {number} the number of hours coverted from milliseconds
+ */
+
+let msToTotalHours = milliseconds => convertToLarger(msToTotalMinutes(milliseconds),60)
+
+/**
  * Given a number and an integer, returns the total number of whole remaining smaller units after the number with that coversion factor has been removed
  * @param {number} num the number 
  * @param {number} the integer
